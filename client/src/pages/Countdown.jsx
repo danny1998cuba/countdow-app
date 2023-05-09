@@ -53,13 +53,11 @@ export const Countdown = () => {
 
 
   return (
-    <Layout>
-      <div className="counter-wrapper">
-        <div className="counter-box">
-          <p className='title'>{text}</p>
-          <Counter date={date} />
-        </div>
+    <div className="counter-wrapper">
+      <div className="counter-box">
+        <p className='title'>{text}</p>
+        <Counter date={date} />
       </div>
-    </Layout>
+    </div>
   )
 }

@@ -1,3 +1,7 @@
+* {
+    transition: all 0.2s;
+}
+
 body {
     min-height: 100vh;
     max-height: 100vh;
@@ -24,6 +28,14 @@ header {
 
 header .dropdown-toggle::after {
     display: none !important;
+}
+
+main aside {
+    flex: 1;
+}
+
+main section {
+    flex: 4;
 }
 
 .layout-container {
@@ -75,10 +87,40 @@ header .dropdown-toggle::after {
     padding: 1.5rem 0;
 }
 
+
+/* Login */
+.login {
+    margin-top: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 1rem 1.5rem;
+}
+
+.login .options .item {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.login .options .item.selected {
+    opacity: 1;
+}
+
+.login .options .item:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+/* Forms */
+form .error {
+    font-size: small;
+    color: #ee624d;
+}
+
 @media (min-width: 991px) {
     .counter-flex-responsive {
         width: 50%;
     }
+
     .counter-box .title {
         font-size: 2rem;
     }
@@ -88,6 +130,7 @@ header .dropdown-toggle::after {
     .counter-flex-responsive {
         width: 60%;
     }
+
     .counter-box .title {
         font-size: 1.75rem;
     }
@@ -97,6 +140,7 @@ header .dropdown-toggle::after {
     .counter-flex-responsive {
         width: 75%;
     }
+
     .counter-box .title {
         font-size: 1.5rem;
     }
