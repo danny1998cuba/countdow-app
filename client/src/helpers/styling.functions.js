@@ -37,9 +37,9 @@ export const formStyling = () => {
         let input = [...fg.childNodes].find(inp => inp.nodeName === 'INPUT')
         if (input) {
             input.classList.add('form-control-sm')
+            input.classList.add('w-100')
 
             if(input.id && input.id === 'btn') {
-                input.classList.add('w-100')
                 input.classList.add('text-center')
                 input.classList.add('btn')
                 input.classList.add('btn-primary')

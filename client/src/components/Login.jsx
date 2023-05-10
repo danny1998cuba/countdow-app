@@ -36,6 +36,10 @@ export const Login = () => {
                         formInputs={loginFormInputs(signin)}
                         onSubmit={handleSubmit}
                     ></DynamicForm>
+
+                    <div className="w-100 text-center small forgot-pass">
+                        Did you forget your password?
+                    </div>
                 </div>
             </div>
         </>

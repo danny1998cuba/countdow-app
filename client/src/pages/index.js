@@ -1,8 +1,12 @@
 import { Countdown } from './Countdown'
+import { Design } from './Design/Design'
 import { Home } from './Home'
 import { Layout } from './Layout'
+import { MyCountdowns } from './MyCountdowns'
 import { Settings } from './Settings'
 
 export {
-    Countdown, Home, Layout, Settings
+    Countdown, Design,
+    Home, Layout,
+    MyCountdowns, Settings
 }

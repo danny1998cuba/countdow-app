@@ -2,7 +2,7 @@ import React from 'react'
 import { Login, Menu } from '../components'
 import Bars from '../data/constants/svg/bars.svg'
 
-export const Layout = ({ title = '', children }) => {
+export const Layout = ({ title = '', withLogin = true, children }) => {
     return (
         <>
             <div className="container layout-container">
@@ -18,13 +18,16 @@ export const Layout = ({ title = '', children }) => {
                     </div>
                 </header>
 
-                <main className='d-flex flex-column flex-md-row-reverse justify-content-between align-items-start gap-3'>
-                    <aside className='flex-1'>
-                        <Login />
-                    </aside>
-                    <section className='flex-3'>
+                <main className='d-flex flex-column-reverse flex-lg-row justify-content-between align-items-start gap-3'>
+                    <section className={`${withLogin ? 'withLogin' : ''}`}>
                         {children}
                     </section>
+                    {
+                        withLogin &&
+                        <aside className='d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start w-100'>
+                            <Login />
+                        </aside>
+                    }
                 </main>
             </div>
         </>
