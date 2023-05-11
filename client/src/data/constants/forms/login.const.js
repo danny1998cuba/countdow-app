@@ -21,8 +21,8 @@ export const loginFormInputs = (signin) => [
             },
             {
                 type: 'minLength',
-                value: 8,
-                message: 'The username must have at least 8 letters'
+                value: 6,
+                message: 'The username must have at least 6 letters'
             }
         ]
     },

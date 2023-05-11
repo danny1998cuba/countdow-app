@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
     res.send('Mini api')
 })
 
-app.use('/', require('./routes').AuthRoutes)
+app.use('/api', require('./routes').AuthRoutes)
 app.use('/api/countdown', require('./routes').CountdownRoutes)
 app.use('/api/user', require('./routes').UserRoutes)
 

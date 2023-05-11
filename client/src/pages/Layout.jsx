@@ -24,7 +24,7 @@ export const Layout = ({ title = '', withLogin = true, children }) => {
                     </section>
                     {
                         withLogin &&
-                        <aside className='d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start w-100'>
+                        <aside className='d-flex justify-content-center justify-content-lg-end align-items-center align-items-lg-start w-100'>
                             <Login />
                         </aside>
                     }
