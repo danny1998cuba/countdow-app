@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { growl } from '@crystallize/react-growl'
 
 import { TOKEN_HEADER, USER_KEY } from '../data/constants/storage.keys';
@@ -7,8 +7,8 @@ import { AuthService, StorageService } from '../data/services';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [logged, setLogged] = useState(false)
-    const [user, setUser] = useState(null)
+    const [logged, setLogged] = useState(StorageService.isInSession(TOKEN_HEADER))
+    const [user, setUser] = useState(StorageService.getItemSession(USER_KEY))
 
     const handleLogin = async (values, signin) => {
         try {
@@ -39,11 +39,6 @@ const AuthProvider = ({ children }) => {
         setLogged(false)
         setUser(null)
     }
-
-    useEffect(() => {
-        setLogged(StorageService.isInSession(TOKEN_HEADER))
-        setUser(StorageService.getItemSession(USER_KEY))
-    }, [])
 
     const data = {
         logged, user,
