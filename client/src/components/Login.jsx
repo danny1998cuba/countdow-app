@@ -1,45 +1,18 @@
 import { DynamicForm } from 'd98c_dynamic-forms'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
-import { TOKEN_HEADER, USER_KEY } from '../data/constants/storage.keys'
 import { loginFormInputs } from '../data/constants/forms'
-import { AuthService, StorageService } from '../data/services'
 import { StylingFunctions } from '../helpers'
+import { AuthContext } from '../context'
 
 export const Login = () => {
     const [signin, setSignin] = useState(true)
-    const [logged, setLogged] = useState(false)
-    const [user, setUser] = useState(null)
-
-    const handleSubmit = async (values) => {
-        try {
-            let token
-            if (signin) {
-                token = await AuthService.signin(values)
-            } else {
-                token = await AuthService.signup(values)
-            }
-
-            StorageService.setItemSession(TOKEN_HEADER, token)
-            let user = await AuthService.profile()
-            StorageService.setItemSession(USER_KEY, user)
-            setUser(user)
-            setLogged(true)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const handleLogOut = () => {
-        StorageService.removeItemSession(TOKEN_HEADER)
-        StorageService.removeItemSession(USER_KEY)
-        setLogged(false)
-        setUser(null)
-    }
+    const {
+        logged, user,
+        handleLogin, handleLogout
+    } = useContext(AuthContext)
 
     useEffect(() => {
-        setLogged(StorageService.isInSession(TOKEN_HEADER))
-        setUser(StorageService.getItemSession(USER_KEY))
         StylingFunctions.formStyling()
     }, [])
 
@@ -57,7 +30,7 @@ export const Login = () => {
                         logged ?
                             <>
                                 <p>Welcome, {user ? user.username : 'username'}</p>
-                                <button className="btn btn-primary" onClick={handleLogOut}>Logout</button>
+                                <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
                             </> :
                             <>
                                 <div className="options d-flex flex-row align-items-center justify-content-evenly gap-3 mb-4">
@@ -67,7 +40,7 @@ export const Login = () => {
 
                                 <DynamicForm
                                     formInputs={loginFormInputs(signin)}
-                                    onSubmit={handleSubmit}
+                                    onSubmit={(values) => handleLogin(values, signin)}
                                 ></DynamicForm>
 
                                 <div className="w-100 text-center small forgot-pass">

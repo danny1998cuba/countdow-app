@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Login, Menu } from '../components'
 import Bars from '../data/constants/svg/bars.svg'
+import { AuthContext } from '../context'
 
 export const Layout = ({ title = '', withLogin = true, children }) => {
+    const { logged } = useContext(AuthContext)
+
     return (
         <>
             <div className="container layout-container">
@@ -10,11 +13,15 @@ export const Layout = ({ title = '', withLogin = true, children }) => {
                     <h1>{title}</h1>
 
                     <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="triggerId"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src={Bars} alt="bars" className='menu-toggle-img' width='15' />
-                        </button>
-                        <Menu />
+                        {
+                            logged && <>
+                                <button className="btn btn-secondary dropdown-toggle" type="button" id="triggerId"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src={Bars} alt="bars" className='menu-toggle-img' width='15' />
+                                </button>
+                                <Menu />
+                            </>
+                        }
                     </div>
                 </header>
 
