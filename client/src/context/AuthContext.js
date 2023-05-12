@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
-import { AuthService, StorageService } from '../data/services';
+import { growl } from '@crystallize/react-growl'
+
 import { TOKEN_HEADER, USER_KEY } from '../data/constants/storage.keys';
+import { AuthService, StorageService } from '../data/services';
 
 const AuthContext = createContext();
 
@@ -23,7 +25,11 @@ const AuthProvider = ({ children }) => {
             setUser(user)
             setLogged(true)
         } catch (error) {
-            console.log(error);
+            await growl({
+                title: 'Authentication Error',
+                message: error.toString(),
+                type: 'error'
+            })
         }
     }
 

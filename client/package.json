@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@crystallize/react-growl": "^3.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.4.0",
     "d98c_dynamic-forms": "^1.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "framer-motion": "^10.12.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.0",
+    "styled-components": "^6.0.0-rc.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

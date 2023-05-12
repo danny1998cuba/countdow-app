@@ -23,7 +23,7 @@ export const signup = async ({ username, password }) => {
 export const changePassword = async ({ username, password, newPassword }) => {
     try {
         let res = await axios.post(CHANGE_PASSWORD, { username, password, newPassword })
-        return res.data.token
+        return res.data
     } catch (error) {
         throw error.response.data
     }

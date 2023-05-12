@@ -39,7 +39,7 @@ export const formStyling = () => {
             input.classList.add('form-control-sm')
             input.classList.add('w-100')
 
-            if(input.id && input.id === 'btn') {
+            if (input.id && input.id.includes('btn')) {
                 input.classList.add('text-center')
                 input.classList.add('btn')
                 input.classList.add('btn-primary')

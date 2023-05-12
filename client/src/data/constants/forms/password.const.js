@@ -1,4 +1,4 @@
-export const forgotPasswordFormInputs = () => [
+export const forgotPasswordFormInputs = [
     {
         type: 'header',
         text: 'Change password'
@@ -71,7 +71,12 @@ export const forgotPasswordFormInputs = () => [
     },
     {
         type: 'submit',
-        name: 'btn',
+        name: 'btn_smt',
+        value: 'Submit'
+    },
+    {
+        type: 'reset',
+        name: 'btn_reset',
         value: 'Submit'
     }
 ]

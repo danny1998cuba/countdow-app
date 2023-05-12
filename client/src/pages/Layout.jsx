@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Login, Menu } from '../components'
-import Bars from '../data/constants/svg/bars.svg'
 import { AuthContext } from '../context'
+import Bars from '../data/constants/svg/bars.svg'
 
 export const Layout = ({ title = '', withLogin = true, children }) => {
     const { logged } = useContext(AuthContext)

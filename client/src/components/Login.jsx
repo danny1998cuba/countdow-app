@@ -4,9 +4,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { loginFormInputs } from '../data/constants/forms'
 import { StylingFunctions } from '../helpers'
 import { AuthContext } from '../context'
+import { ForgotPass } from './ForgotPass'
 
 export const Login = () => {
     const [signin, setSignin] = useState(true)
+    const [modalIsOpen, setIsOpen] = useState(false);
+
     const {
         logged, user,
         handleLogin, handleLogout
@@ -43,14 +46,16 @@ export const Login = () => {
                                     onSubmit={(values) => handleLogin(values, signin)}
                                 ></DynamicForm>
 
-                                <div className="w-100 text-center small forgot-pass">
+                                {/* <div className="w-100 text-center small forgot-pass" onClick={() => setIsOpen(true)}>
                                     Did you forget your password?
-                                </div>
+                                </div> */}
                             </>
 
                     }
                 </div>
             </div>
+
+            {/* <ForgotPass modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} /> */}
         </>
     )
 }
