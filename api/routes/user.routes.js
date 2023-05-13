@@ -4,6 +4,7 @@ const middles = require('../middlewares')
 
 router.get('/', middles.verifyToken, controller.obtenerUsers)
 router.get('/:id', middles.verifyToken, middles.validateObjectId, controller.obtenerUser)
+router.post('/change_password', middles.verifyToken, controller.changePassword)
 router.put('/:id', middles.verifyToken,
     middles.validateObjectId,
     middles.checkDuplicatedUsername,

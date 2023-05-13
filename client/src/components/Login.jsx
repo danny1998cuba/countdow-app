@@ -1,7 +1,7 @@
 import { DynamicForm } from 'd98c_dynamic-forms'
 import React, { useContext, useEffect, useState } from 'react'
 
-import { loginFormInputs } from '../data/constants/forms'
+import { loginFormInputs, registerFormInputs } from '../data/constants/forms'
 import { StylingFunctions } from '../helpers'
 import { AuthContext } from '../context'
 import { ForgotPass } from './ForgotPass'
@@ -41,21 +41,27 @@ export const Login = () => {
                                     <p className={`item ${!signin && 'selected'}`} onClick={() => setSignin(false)}>Sign Up</p>
                                 </div>
 
-                                <DynamicForm
-                                    formInputs={loginFormInputs(signin)}
-                                    onSubmit={(values) => handleLogin(values, signin)}
-                                ></DynamicForm>
-
-                                {/* <div className="w-100 text-center small forgot-pass" onClick={() => setIsOpen(true)}>
+                                {
+                                    signin ?
+                                        <DynamicForm
+                                            formInputs={loginFormInputs}
+                                            onSubmit={(values) => handleLogin(values, signin)}
+                                        ></DynamicForm> :
+                                        <DynamicForm
+                                            formInputs={registerFormInputs}
+                                            onSubmit={(values) => handleLogin(values, signin)}
+                                        ></DynamicForm>
+                                }
+                                <div className="w-100 text-center small forgot-pass" onClick={() => setIsOpen(true)}>
                                     Did you forget your password?
-                                </div> */}
+                                </div>
                             </>
 
                     }
                 </div>
             </div>
 
-            {/* <ForgotPass modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} /> */}
+            <ForgotPass modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
         </>
     )
 }

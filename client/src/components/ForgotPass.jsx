@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Modal from 'react-modal'
 import { growl } from '@crystallize/react-growl'
 import { DynamicForm } from 'd98c_dynamic-forms';
 
+import { AuthContext } from '../context';
 import { forgotPasswordFormInputs } from '../data/constants/forms'
 import Close from '../data/constants/svg/close.svg'
-import { StylingFunctions } from '../helpers';
 import { AuthService } from '../data/services';
+import { StylingFunctions } from '../helpers';
 
 const customStyles = {
     content: {
@@ -30,6 +31,8 @@ Modal.setAppElement('#root')
 
 export const ForgotPass = ({ modalIsOpen, setIsOpen }) => {
 
+    const { handleLoginToken } = useContext(AuthContext)
+
     const afterOpenModal = () => {
         StylingFunctions.formStyling()
     }
@@ -40,8 +43,11 @@ export const ForgotPass = ({ modalIsOpen, setIsOpen }) => {
 
     const handlePassChange = async (values) => {
         try {
-            let message = await AuthService.changePassword(values)
+            let { token, mailSended } = await AuthService.changePassword(values)
+            handleLoginToken(token)
             setIsOpen(false)
+
+            let message = `The email was${mailSended ? '' : 'n\'t'} sended. We recommend to change the self-generated password.`
             await growl({
                 title: 'Success',
                 message: message,

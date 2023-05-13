@@ -11,18 +11,18 @@ export const signin = async ({ username, password }) => {
     }
 }
 
-export const signup = async ({ username, password }) => {
+export const signup = async ({ username, email, password }) => {
     try {
-        let res = await axios.post(SIGNUP, { username, password })
+        let res = await axios.post(SIGNUP, { username, email, password })
         return res.data.token
     } catch (error) {
         throw error.response.data
     }
 }
 
-export const changePassword = async ({ username, password, newPassword }) => {
+export const changePassword = async ({ username }) => {
     try {
-        let res = await axios.post(CHANGE_PASSWORD, { username, password, newPassword })
+        let res = await axios.post(CHANGE_PASSWORD, { username })
         return res.data
     } catch (error) {
         throw error.response.data

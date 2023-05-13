@@ -27,7 +27,7 @@ exports.obtenerUsers = async (req, res) => {
 
 exports.actualizarUser = async (req, res) => {
     try {
-        const { username, password } = req.body
+        const { username, email, password } = req.body
         let user = await User.findById(req.params.id)
 
         if (!user) {
@@ -35,6 +35,7 @@ exports.actualizarUser = async (req, res) => {
         }
 
         user.username = username
+        user.email = email
 
         const matchPass = await User.comparePassword(password, user.password)
         if (!matchPass)
@@ -76,6 +77,32 @@ exports.eliminarUser = async (req, res) => {
         await User.findByIdAndRemove({ _id: req.params.id })
         res.json({ msg: 'User eliminado con exito' })
 
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error')
+    }
+}
+
+exports.changePassword = async (req, res) => {
+    try {
+        const { password, newPassword } = req.body
+        if (password && newPassword) {
+
+            let user = await User.findById(req.userId)
+
+            if (!user) return res.status(404).send('The username doesn\'t exists')
+
+            const matchPass = await User.comparePassword(password, user.password)
+
+            if (!matchPass) return res.status(401).send('Wrong old password')
+
+            user.password = await User.encryptPassword(newPassword)
+            user = await User.findOneAndUpdate({ _id: req.userId }, user, { new: true })
+
+            res.status(200).json("Password updated")
+        } else {
+            res.status(400).send('Bad request')
+        }
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error')

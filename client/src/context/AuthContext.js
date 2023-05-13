@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
     const handleLogin = async (values, signin) => {
         try {
             let token
+
             if (signin) {
                 token = await AuthService.signin(values)
             } else {
@@ -20,6 +21,22 @@ const AuthProvider = ({ children }) => {
             }
 
             StorageService.setItemSession(TOKEN_HEADER, token)
+            let user = await AuthService.profile()
+            StorageService.setItemSession(USER_KEY, user)
+            setUser(user)
+            setLogged(true)
+        } catch (error) {
+            await growl({
+                title: 'Authentication Error',
+                message: error.toString(),
+                type: 'error'
+            })
+        }
+    }
+
+    const handleLoginToken = async (providedToken) => {
+        try {
+            StorageService.setItemSession(TOKEN_HEADER, providedToken)
             let user = await AuthService.profile()
             StorageService.setItemSession(USER_KEY, user)
             setUser(user)
@@ -42,7 +59,8 @@ const AuthProvider = ({ children }) => {
 
     const data = {
         logged, user,
-        handleLogin, handleLogout
+        handleLogin, handleLoginToken,
+        handleLogout,
     }
 
     return (<AuthContext.Provider value={data}>{children}</AuthContext.Provider>)

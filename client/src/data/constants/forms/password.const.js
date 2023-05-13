@@ -1,4 +1,4 @@
-export const forgotPasswordFormInputs = [
+export const changePasswordFormInputs = [
     {
         type: 'header',
         text: 'Change password'
@@ -77,6 +77,40 @@ export const forgotPasswordFormInputs = [
     {
         type: 'reset',
         name: 'btn_reset',
+        value: 'Submit'
+    }
+]
+
+export const forgotPasswordFormInputs = [
+    {
+        type: 'header',
+        text: 'Change password'
+    },
+    {
+        name: 'username',
+        value: '',
+
+        placeholder: 'Type your username',
+        label: 'Username',
+        inline: 'false',
+
+        type: 'text',
+
+        validations: [
+            {
+                type: 'required',
+                message: 'This field is required'
+            },
+            {
+                type: 'minLength',
+                value: 6,
+                message: 'The username must have at least 6 letters'
+            }
+        ]
+    },
+    {
+        type: 'submit',
+        name: 'btn_smt',
         value: 'Submit'
     }
 ]
