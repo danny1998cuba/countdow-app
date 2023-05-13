@@ -27,7 +27,7 @@ exports.obtenerUsers = async (req, res) => {
 
 exports.actualizarUser = async (req, res) => {
     try {
-        const { username, email, password } = req.body
+        const { username, email } = req.body
         let user = await User.findById(req.params.id)
 
         if (!user) {
@@ -36,10 +36,6 @@ exports.actualizarUser = async (req, res) => {
 
         user.username = username
         user.email = email
-
-        const matchPass = await User.comparePassword(password, user.password)
-        if (!matchPass)
-            user.password = await User.encryptPassword(password)
 
         user = await User.findOneAndUpdate({ _id: req.params.id }, user, { new: true })
 

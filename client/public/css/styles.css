@@ -38,8 +38,17 @@ main section.withLogin {
     flex: 3;
 }
 
+main section {
+    flex: 1;
+    width: 100%;
+}
+
 .layout-container {
     height: 100%;
+}
+
+.nav-link {
+    cursor: pointer !important;
 }
 
 /* Counter */

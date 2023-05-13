@@ -1,36 +1,10 @@
 export const changePasswordFormInputs = [
     {
-        type: 'header',
-        text: 'Change password'
-    },
-    {
-        name: 'username',
-        value: '',
-
-        placeholder: 'Type your username',
-        label: 'Username',
-        inline: 'false',
-
-        type: 'text',
-
-        validations: [
-            {
-                type: 'required',
-                message: 'This field is required'
-            },
-            {
-                type: 'minLength',
-                value: 6,
-                message: 'The username must have at least 6 letters'
-            }
-        ]
-    },
-    {
         name: 'password',
         value: '',
 
-        placeholder: 'Type your password',
-        label: 'Password',
+        placeholder: 'Type your current password',
+        label: 'Current password',
         inline: 'false',
 
         type: 'password',

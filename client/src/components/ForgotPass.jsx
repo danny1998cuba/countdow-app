@@ -5,9 +5,10 @@ import { DynamicForm } from 'd98c_dynamic-forms';
 
 import { AuthContext } from '../context';
 import { forgotPasswordFormInputs } from '../data/constants/forms'
-import Close from '../data/constants/svg/close.svg'
 import { AuthService } from '../data/services';
 import { StylingFunctions } from '../helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const customStyles = {
     content: {
@@ -43,7 +44,7 @@ export const ForgotPass = ({ modalIsOpen, setIsOpen }) => {
 
     const handlePassChange = async (values) => {
         try {
-            let { token, mailSended } = await AuthService.changePassword(values)
+            let { token, mailSended } = await AuthService.forgotPassword(values)
             handleLoginToken(token)
             setIsOpen(false)
 
@@ -72,10 +73,7 @@ export const ForgotPass = ({ modalIsOpen, setIsOpen }) => {
                 contentLabel="Example Modal"
             >
                 <div className="d-flex justify-content-end align-items-center w-100 mb-4">
-                    <button className="btn btn-light d-flex justify-content-center align-items-center p-2"
-                        type="button" onClick={closeModal}>
-                        <img src={Close} alt="close" width='25' />
-                    </button>
+                    <FontAwesomeIcon icon={faTimes} onClick={closeModal} role='button' />
                 </div>
                 <DynamicForm formInputs={forgotPasswordFormInputs}
                     onSubmit={handlePassChange}

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CHANGE_PASSWORD, PROFILE, SIGNIN, SIGNUP } from '../constants/api.routes'
+import { API_USERS, CHANGE_PASSWORD, PROFILE, SIGNIN, SIGNUP, USER_PASSWORD } from '../constants/api.routes'
 import { generateHeader } from './headers'
 
 export const signin = async ({ username, password }) => {
@@ -20,9 +20,32 @@ export const signup = async ({ username, email, password }) => {
     }
 }
 
-export const changePassword = async ({ username }) => {
+export const forgotPassword = async ({ username }) => {
     try {
         let res = await axios.post(CHANGE_PASSWORD, { username })
+        return res.data
+    } catch (error) {
+        throw error.response.data
+    }
+}
+
+export const changePassword = async ({ password, newPassword }) => {
+    try {
+        let headers = generateHeader()
+        let res = await axios.post(USER_PASSWORD, { password, newPassword }, { headers })
+        return res.data
+    } catch (error) {
+        throw error.response.data
+    }
+}
+
+export const changeEmail = async (user, { email }) => {
+    try {
+        let headers = generateHeader()
+        let res = await axios.put(`${API_USERS}/${user._id}`, {
+            username: user.username,
+            email
+        }, { headers })
         return res.data
     } catch (error) {
         throw error.response.data

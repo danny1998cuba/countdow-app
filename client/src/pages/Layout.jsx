@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { Login, Menu } from '../components'
 import { AuthContext } from '../context'
-import Bars from '../data/constants/svg/bars.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 export const Layout = ({ title = '', withLogin = true, children }) => {
     const { logged } = useContext(AuthContext)
@@ -15,9 +16,9 @@ export const Layout = ({ title = '', withLogin = true, children }) => {
                     <div className="dropdown">
                         {
                             logged && <>
-                                <button className="btn btn-secondary dropdown-toggle" type="button" id="triggerId"
+                                <button className="btn text-light dropdown-toggle" type="button" id="triggerId"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src={Bars} alt="bars" className='menu-toggle-img' width='15' />
+                                    <FontAwesomeIcon icon={faBars}/>
                                 </button>
                                 <Menu />
                             </>
