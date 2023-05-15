@@ -1,3 +1,5 @@
+const { Countdown } = require('../models')
+
 const User = require('../models').User
 
 exports.crearUser = async (req, res) => {
@@ -69,6 +71,12 @@ exports.eliminarUser = async (req, res) => {
         if (!user) {
             res.status(404).json({ msg: 'No existe en user' })
         }
+
+        let counts = await Countdown.find({ _userId: user.id })
+
+        counts.forEach(async (count) => {
+            await Countdown.findByIdAndRemove(count.id)
+        })
 
         await User.findByIdAndRemove({ _id: req.params.id })
         res.json({ msg: 'User eliminado con exito' })

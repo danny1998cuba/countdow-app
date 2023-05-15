@@ -52,6 +52,16 @@ export const changeEmail = async (user, { email }) => {
     }
 }
 
+export const deleteUser = async (user) => {
+    try {
+        let headers = generateHeader()
+        let res = await axios.delete(`${API_USERS}/${user._id}`, { headers })
+        return res.data
+    } catch (error) {
+        throw error.response.data
+    }
+}
+
 export const profile = async () => {
     try {
         let headers = generateHeader()

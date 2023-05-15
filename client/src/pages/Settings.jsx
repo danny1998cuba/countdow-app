@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Layout } from './Layout'
 import { StylingFunctions } from '../helpers'
 import { AuthContext } from '../context'
-import { ChangeEmail, ChangePassword } from '../components'
+import { ChangeEmail, ChangePassword, DeleteAccount } from '../components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 
@@ -33,11 +33,17 @@ export const SettingsTab = ({ id }) => {
           </div>
           <div className="col-lg-4 col-md-6 d-none d-lg-block">
             <div className="image d-flex justify-content-center align-items-center h-100 w-100">
-              <FontAwesomeIcon icon={faUserEdit} className='w-50 h-50'/>
+              <FontAwesomeIcon icon={faUserEdit} className='w-50 h-50' />
             </div>
           </div>
           <div className="col-lg-4 col-md-6">
             <ChangeEmail user={user} />
+          </div>
+        </div>
+
+        <div className="row mt-4">
+          <div className="col-12">
+            <DeleteAccount />
           </div>
         </div>
       </>

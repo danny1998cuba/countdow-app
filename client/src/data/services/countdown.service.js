@@ -25,7 +25,7 @@ export const update = async (id, countdown) => {
 export const delete_ = async (id) => {
     try {
         let headers = generateHeader()
-        let res = await axios.get(`${API_COUNTDOWN}/${id}`, { headers })
+        let res = await axios.delete(`${API_COUNTDOWN}/${id}`, { headers })
         return res.data
     } catch (error) {
         throw error.response.data

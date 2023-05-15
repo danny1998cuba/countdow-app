@@ -127,6 +127,28 @@ form .error {
     color: #ee624d;
 }
 
+/* Share */
+.share .link {
+    word-wrap: break-word;
+}
+
+.btn-whatsapp {
+    background-color: #28d146 !important;
+}
+
+.btn-copy {
+    background-color: #555 !important;
+}
+
+.btn-instagram {
+    background: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7) !important;
+}
+
+.btn-telegram {
+    background-color: #0088cc !important;
+}
+
+
 @media (min-width: 991px) {
     .counter-flex-responsive {
         width: 50%;
