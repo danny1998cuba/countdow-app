@@ -24,8 +24,8 @@ export const ActiveDate = ({ date }) => {
 
 
     useEffect(() => {
-        let mom = moment(new Date()).startOf('day')
-        let fromDate = moment(date).startOf('day')
+        let mom = moment.utc(new Date()).startOf('day')
+        let fromDate = moment.utc(date).startOf('day')
         if (mom.isAfter(fromDate)) setState({ when: 'past', text: 'Finished' })
         if (mom.isSame(fromDate)) setState({ when: 'today', text: 'It\'s today' })
         if (mom.isBefore(fromDate)) setState({ when: 'future', text: 'Active' })

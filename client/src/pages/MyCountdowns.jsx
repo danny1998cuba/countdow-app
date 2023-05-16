@@ -81,34 +81,37 @@ export const MyCountdowns = () => {
                 {counts.length !== 0 && counts.map(count => (
                     <li className='my-2 p-3' key={count._id}>
                         <div className="row">
-                            <div className="col-sm-3 mb-2 h-100">
-                                <Preview />
+                            <div className="col-md-7 mb-2 h-100" >
+                                <Preview countdown={count} />
                             </div>
-                            <div className="col-sm-6 mb-2">
-                                <div>
-                                    {count.text}
-                                    <br />
-                                    <div className="d-flex gap-3">
-                                        {
-                                            moment.utc(count.date).startOf('day').format('MMM DD, YYYY')
-                                        }
-                                        <ActiveDate date={count.date} />
+                            <div className="col-md-5">
+                                <div className="w-100 d-flex justify-content-center justify-content-md-start">
+                                    <div className="w-auto">
+                                        <div className='mb-3'>
+                                            {count.text}
+                                            <br />
+                                            <div className="d-flex gap-3">
+                                                {
+                                                    moment.utc(count.date).startOf('day').format('MMM DD, YYYY')
+                                                }
+                                                <ActiveDate date={count.date} />
+                                            </div>
+                                        </div>
+
+                                        <div className="d-flex flex-row justify-content-start align-items-start gap-3 h-100">
+                                            <button className="btn btn-success w-auto" onClick={() => { setId(count._id); setIsOpen(true) }} title='Share'>
+                                                <FontAwesomeIcon icon={faShareNodes} />
+                                            </button>
+                                            <Link className='text-light' to={`../countdown/edit/${count._id}`} >
+                                                <button className="btn btn-primary w-auto" title='Update'>
+                                                    <FontAwesomeIcon icon={faPencil} />
+                                                </button>
+                                            </Link>
+                                            <button className="btn btn-danger w-auto" onClick={() => deleteCountdown(count._id)} title='Delete'>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div className="d-flex flex-row justify-content-end align-items-start gap-3 h-100">
-                                    <button className="btn btn-success w-auto" onClick={() => { setId(count._id); setIsOpen(true) }} title='Share'>
-                                        <FontAwesomeIcon icon={faShareNodes} />
-                                    </button>
-                                    <Link className='text-light' to={`../countdown/edit/${count._id}`} >
-                                        <button className="btn btn-primary w-auto" title='Update'>
-                                            <FontAwesomeIcon icon={faPencil} />
-                                        </button>
-                                    </Link>
-                                    <button className="btn btn-danger w-auto" onClick={() => deleteCountdown(count._id)} title='Delete'>
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
                                 </div>
                             </div>
                         </div>

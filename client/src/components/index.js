@@ -7,7 +7,7 @@ import { ForgotPass } from "./ForgotPass"
 import { Loader } from "./Loader/Loader"
 import { Login } from "./Login"
 import { Menu } from "./Menu"
-import { Preview } from "./Preview"
+import { Preview } from "./Preview/Preview"
 import { Share } from "./Share"
 
 export {

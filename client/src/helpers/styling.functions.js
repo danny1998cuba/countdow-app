@@ -52,3 +52,28 @@ export const formStyling = () => {
         }
     })
 }
+
+// export const portrait_landscape = (isLandscape) => {
+//     const container = document.getElementById('container-preview');
+//     const preview = document.getElementById('preview')
+//     let ratio = (5 / 8)
+
+//     if (!isLandscape) {
+//         preview.style.width = '40%'
+//         // ratio = (3 / 4)
+//     } else {
+//         preview.style.width = '100%'
+//         ratio = (5 / 8)
+//     }
+
+//     window.addEventListener('resize', () => {
+//         const preview = document.getElementById('preview')
+//         const content = document.getElementById('content')
+
+//         let newHeight = container.clientWidth * ratio
+//         preview.style.height = `${newHeight}px`
+
+//         let scale = newHeight / content.clientHeight
+//         if (scale < 1) content.style.transform = `scale(${scale - 0.1})`
+//     })
+// }
