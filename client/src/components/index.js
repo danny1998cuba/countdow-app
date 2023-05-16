@@ -1,3 +1,4 @@
+import { ActiveDate } from "./ActiveDate"
 import { ChangeEmail } from "./ChangeEmail"
 import { ChangePassword } from "./ChangePassword"
 import { Counter } from "./Counter"
@@ -10,6 +11,7 @@ import { Preview } from "./Preview"
 import { Share } from "./Share"
 
 export {
+    ActiveDate,
     ChangeEmail,
     ChangePassword,
     Counter,

@@ -148,6 +148,18 @@ form .error {
     background-color: #0088cc !important;
 }
 
+.btn-facebook {
+    background-color: #3b5998 !important;
+}
+
+.btn-tweeter {
+    background-color: #00acee !important;
+}
+
+.btn-other {
+    background-color: #ff2100 !important;
+}
+
 
 @media (min-width: 991px) {
     .counter-flex-responsive {

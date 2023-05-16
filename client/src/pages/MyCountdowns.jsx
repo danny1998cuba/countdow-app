@@ -4,9 +4,10 @@ import { growl } from '@crystallize/react-growl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { Preview, Share } from '../components'
+import { ActiveDate, Preview, Share } from '../components'
 import { CountdownService } from '../data/services'
 import { Layout } from './Layout'
+import moment from 'moment'
 
 export const MyCountdowns = () => {
     const navigate = useNavigate()
@@ -29,10 +30,8 @@ export const MyCountdowns = () => {
 
     const newCountdown = async () => {
         try {
-            let tomorrow = new Date()
-            tomorrow.setDate(new Date().getDate() + 1)
             let count = await CountdownService.create({
-                date: tomorrow,
+                date: new Date(),
                 text: 'New Countdown'
             })
 
@@ -85,12 +84,17 @@ export const MyCountdowns = () => {
                             <div className="col-sm-3 mb-2 h-100">
                                 <Preview />
                             </div>
-                            <div className="col-sm-6">
-                                <p>
+                            <div className="col-sm-6 mb-2">
+                                <div>
                                     {count.text}
                                     <br />
-                                    {new Date(count.date).toDateString()}
-                                </p>
+                                    <div className="d-flex gap-3">
+                                        {
+                                            moment.utc(count.date).startOf('day').format('MMM DD, YYYY')
+                                        }
+                                        <ActiveDate date={count.date} />
+                                    </div>
+                                </div>
                             </div>
                             <div className="col-sm-3">
                                 <div className="d-flex flex-row justify-content-end align-items-start gap-3 h-100">

@@ -1,9 +1,11 @@
 import React from 'react'
 import Modal from 'react-modal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faCopy } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp, faInstagram, faTelegramPlane } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
+import copy from 'clipboardy'
+import { growl } from '@crystallize/react-growl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faCopy, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp, faTelegramPlane, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
 const customStyles = {
     content: {
@@ -41,14 +43,19 @@ export const Share = ({ id, modalIsOpen, setIsOpen }) => {
             icon: faWhatsapp,
         },
         {
-            id: 'instagram',
-            title: 'Instagram',
-            icon: faInstagram,
+            id: 'facebook',
+            title: 'Facebook',
+            icon: faFacebookF,
         },
         {
             id: 'telegram',
             title: 'Telegram',
             icon: faTelegramPlane,
+        },
+        {
+            id: 'other',
+            title: 'More options',
+            icon: faPlus,
         },
     ]
 
@@ -56,23 +63,39 @@ export const Share = ({ id, modalIsOpen, setIsOpen }) => {
         setIsOpen(false);
     }
 
-    const share = (source) => {
+    const share = async (source) => {
+        let link = null
         switch (source) {
             case 'copy':
-
+                await copy.write(route)
+                await growl({
+                    title: 'Success',
+                    message: 'Copied to the clipboard',
+                    type: 'info'
+                })
                 break;
             case 'whatsapp':
-
+                link = `https://api.whatsapp.com/send?text=${encodeURIComponent(route)}`
                 break;
-            case 'instagram':
-
+            case 'facebook':
+                link = `http://www.facebook.com/sharer.php?u=${encodeURIComponent(route)}`
                 break;
             case 'telegram':
-
+                link = `https://t.me/share/url?url=${encodeURIComponent(route)}&text=${encodeURIComponent("Share my countdown")}`
+                window.open(link, '_blank')
                 break;
             default:
+                if (navigator.share) {
+                    await navigator.share({
+                        title: document.title,
+                        text: "Share my countdown",
+                        url: route
+                    })
+                }
                 break;
         }
+        if (link) window.open(link, '_blank')
+        setIsOpen(false)
     }
 
     return (
