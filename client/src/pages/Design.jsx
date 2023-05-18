@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { growl } from '@crystallize/react-growl'
-import { DynamicForm } from 'd98c_dynamic-forms'
-import { useParams } from 'react-router-dom'
-
-import './design.css'
-import { Preview } from '../../components'
-import { CountdownService } from '../../data/services'
-import { countdownFormInputs } from '../../data/constants/forms'
-import { StylingFunctions } from '../../helpers'
-import { Layout } from '../Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPortrait, faImage } from '@fortawesome/free-solid-svg-icons'
+import { DynamicForm } from 'd98c_dynamic-forms'
+import moment from 'moment'
+import { useParams } from 'react-router-dom'
+
+import { Preview } from '../components'
+import { CountdownService } from '../data/services'
+import { countdownFormInputs } from '../data/constants/forms'
+import { StylingFunctions } from '../helpers'
+import { Layout } from './Layout'
 
 export const Design = () => {
   const { id } = useParams()
@@ -19,27 +19,34 @@ export const Design = () => {
   const [form, setForm] = useState(null)
   const [landscape, setLandscape] = useState(true)
   const [preview, setPreview] = useState(null)
+  const [route, setRoute] = useState('')
 
-
-  const find = async () => {
-    let count = await CountdownService.getOne(id)
-    setCountdown(count)
-    setPreview(count)
-    setForm(countdownFormInputs(count))
-    StylingFunctions.formStyling()
-  }
-
+  
   useEffect(() => {
+    const find = async () => {
+      let count = await CountdownService.getOne(id)
+      setCountdown(count)
+      setPreview(count)
+      setForm(countdownFormInputs(count))
+      StylingFunctions.formStyling()
+    }
+    
     find()
-  }, [])
+    StylingFunctions.formStyling()
+  }, [id])
 
   useEffect(() => {
     if (preSaved) {
       setPreview(preSaved)
     } else {
-      setPreSaved(countdown)
+      setPreview(countdown)
     }
-  }, [preSaved])
+  }, [preSaved, countdown])
+
+  useEffect(() => {
+    if (preview) setRoute(`/#/countdown?date=${moment.utc(preview.date).format('YYYY-MM-DD')}`)
+  }, [preview])
+
 
 
   const save = async () => {
@@ -118,7 +125,9 @@ export const Design = () => {
             </div>
             <div className="row">
               <div className="col-12">
-                {preview && <Preview isLandscape={landscape} countdown={preview} />}
+                {preview &&
+                  <Preview route={route} isLandscape={landscape} />
+                }
               </div>
             </div>
           </div>

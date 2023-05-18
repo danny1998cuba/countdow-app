@@ -4,10 +4,12 @@ import { growl } from '@crystallize/react-growl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { ActiveDate, Preview, Share } from '../components'
+import { ActiveDate, Share } from '../components'
 import { CountdownService } from '../data/services'
 import { Layout } from './Layout'
 import moment from 'moment'
+import { PASTEL_COLOURS } from '../data/constants/colors'
+import _ from 'lodash'
 
 export const MyCountdowns = () => {
     const navigate = useNavigate()
@@ -79,39 +81,44 @@ export const MyCountdowns = () => {
 
             <ul className='list-unstyled'>
                 {counts.length !== 0 && counts.map(count => (
-                    <li className='my-2 p-3' key={count._id}>
+                    <li className='my-4 p-3' key={count._id}>
                         <div className="row">
-                            <div className="col-md-7 mb-2 h-100" >
-                                <Preview countdown={count} />
-                            </div>
-                            <div className="col-md-5">
-                                <div className="w-100 d-flex justify-content-center justify-content-md-start">
-                                    <div className="w-auto">
-                                        <div className='mb-3'>
-                                            {count.text}
-                                            <br />
-                                            <div className="d-flex gap-3">
-                                                {
-                                                    moment.utc(count.date).startOf('day').format('MMM DD, YYYY')
-                                                }
-                                                <ActiveDate date={count.date} />
-                                            </div>
-                                        </div>
-
-                                        <div className="d-flex flex-row justify-content-start align-items-start gap-3 h-100">
-                                            <button className="btn btn-success w-auto" onClick={() => { setId(count._id); setIsOpen(true) }} title='Share'>
-                                                <FontAwesomeIcon icon={faShareNodes} />
-                                            </button>
-                                            <Link className='text-light' to={`../countdown/edit/${count._id}`} >
-                                                <button className="btn btn-primary w-auto" title='Update'>
-                                                    <FontAwesomeIcon icon={faPencil} />
-                                                </button>
-                                            </Link>
-                                            <button className="btn btn-danger w-auto" onClick={() => deleteCountdown(count._id)} title='Delete'>
-                                                <FontAwesomeIcon icon={faTrash} />
-                                            </button>
+                            <div className="col-md-8 ">
+                                <div className="row">
+                                    <div className="col-md-2 col-3" >
+                                        <div
+                                            className="avatar p-3 d-flex justify-content-center align-items-center"
+                                            style={{ '--bg': PASTEL_COLOURS[count.text.charCodeAt(0) % PASTEL_COLOURS.length] }}>
+                                            {count.text.charAt(0)}
                                         </div>
                                     </div>
+                                    <div className="col-md-10 col-9">
+                                        <div className="w-auto">
+                                            <div className='mb-3'>
+                                                {count.text}
+                                                <br />
+                                                <div className="d-flex gap-3">
+                                                    {moment.utc(count.date).startOf('day').format("YYYY-MM-DD")}
+                                                    <ActiveDate date={count.date} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="d-flex flex-row justify-content-start justify-content-md-end align-items-start gap-3 h-100">
+                                    <button className="btn btn-success w-auto" onClick={() => { setId(count._id); setIsOpen(true) }} title='Share'>
+                                        <FontAwesomeIcon icon={faShareNodes} />
+                                    </button>
+                                    <Link className='text-light' to={`../countdown/edit/${count._id}`} >
+                                        <button className="btn btn-primary w-auto" title='Update'>
+                                            <FontAwesomeIcon icon={faPencil} />
+                                        </button>
+                                    </Link>
+                                    <button className="btn btn-danger w-auto" onClick={() => deleteCountdown(count._id)} title='Delete'>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
                                 </div>
                             </div>
                         </div>

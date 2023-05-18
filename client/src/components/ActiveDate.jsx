@@ -6,7 +6,8 @@ const styles = {
         display: 'inline-block',
         width: '15px',
         height: '15px',
-        borderRadius: '50%'
+        borderRadius: '50%',
+        animation: '2s ease-in-out pumping infinite'
     },
     past: {
         backgroundColor: 'red',

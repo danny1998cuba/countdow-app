@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import './preview.css'
-import { Counter } from '../Counter'
 
-export const Preview = ({ countdown, isLandscape = true }) => {
+export const Preview = ({ route, isLandscape = true, key = '' }) => {
   const [landscape, setLandscape] = useState(isLandscape)
 
   useEffect(() => {
     setLandscape(isLandscape)
   }, [isLandscape])
 
-  return (
-    <>
-      <div className="d-flex justify-content-center align-items-center">
-        <div className={`preview ${landscape ? 'landscape' : 'portrait'}`}>
-          <div className="background" style={{ '--back': 'transparent' }}></div>
-          <div className="content">
-            <div className="counter-box">
-              <p className="title">{countdown?.text}</p>
-              <Counter date={new Date(countdown?.date)} />
-            </div>
-          </div>
-        </div>
+  useEffect(() => {
+    const frame = document.getElementById(`preview_${key}`)
+    frame.src = route
+    frame.parentNode.replaceChild(frame.cloneNode(), frame)
+  }, [route, key])
 
+
+  return (
+    <div className="preview-wrapper d-flex justify-content-center">
+      <div className={`preview-orientation-adapter ${landscape ? 'landscape' : 'portrait'}`}>
+        <iframe
+          id={`preview_${key}`}
+          className='preview'
+          src={route}
+          title='Preview'
+        />
       </div>
-    </>
+    </div>
   )
 }

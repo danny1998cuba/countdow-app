@@ -1,5 +1,5 @@
 import { Countdown } from './Countdown'
-import { Design } from './Design/Design'
+import { Design } from './Design'
 import { Home } from './Home'
 import { Layout } from './Layout'
 import { MyCountdowns } from './MyCountdowns'
