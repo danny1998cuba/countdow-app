@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLoaderData } from 'react-router-dom'
 import { AuthContext } from '../context';
 
-export const ProtectedRoute = ({ children }) => {
+export const ProtectedRoute = ({ Component }) => {
     const { logged } = useContext(AuthContext)
+    const data = useLoaderData()
 
     if (!logged) {
         return <Navigate to="/" />;
     }
-    return children;
+    return <Component protectedData={data} />;
 };

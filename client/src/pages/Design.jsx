@@ -3,78 +3,71 @@ import { growl } from '@crystallize/react-growl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPortrait, faImage } from '@fortawesome/free-solid-svg-icons'
 import { DynamicForm } from 'd98c_dynamic-forms'
-import moment from 'moment'
-import { useParams } from 'react-router-dom'
 
 import { Preview } from '../components'
 import { CountdownService } from '../data/services'
 import { countdownFormInputs } from '../data/constants/forms'
 import { StylingFunctions } from '../helpers'
 import { Layout } from './Layout'
+import { assign } from 'lodash'
 
-export const Design = () => {
-  const { id } = useParams()
-  const [countdown, setCountdown] = useState({})
-  const [preSaved, setPreSaved] = useState(null)
-  const [form, setForm] = useState(null)
+export const Design = ({ protectedData }) => {
+  console.log(protectedData);
+  const [form, setForm] = useState(countdownFormInputs(protectedData))
+
+  const [countdown, setCountdown] = useState(assign({}, protectedData))
+
   const [landscape, setLandscape] = useState(true)
-  const [preview, setPreview] = useState(null)
-  const [route, setRoute] = useState('')
+  const [route, setRoute] = useState(`/#/countdown/${protectedData._id}`)
 
-  
+
   useEffect(() => {
-    const find = async () => {
-      let count = await CountdownService.getOne(id)
-      setCountdown(count)
-      setPreview(count)
-      setForm(countdownFormInputs(count))
-      StylingFunctions.formStyling()
-    }
-    
-    find()
     StylingFunctions.formStyling()
-  }, [id])
+  }, [form])
 
-  useEffect(() => {
-    if (preSaved) {
-      setPreview(preSaved)
-    } else {
-      setPreview(countdown)
-    }
-  }, [preSaved, countdown])
+  const save = async (object, cancelled) => {
+    try {
+      setRoute('')
+      let countBack = await CountdownService.update(countdown._id, object)
+      setCountdown(countBack)
+      setRoute(`/#/countdown/${countdown._id}`)
 
-  useEffect(() => {
-    if (preview) setRoute(`/#/countdown?date=${moment.utc(preview.date).format('YYYY-MM-DD')}`)
-  }, [preview])
+      let message
 
-
-
-  const save = async () => {
-    if (preSaved) {
-      try {
-        let countBack = await CountdownService.update(countdown._id, preSaved)
-        let message = `Countdown ${countBack._id} modified!`
-        setCountdown(countBack)
-        setPreSaved(null)
-
+      if (cancelled) {
+        setForm(countdownFormInputs(protectedData))
+        StylingFunctions.formStyling()
+        message = 'The changes were cancelled'
+        await growl({
+          title: 'Cancelled',
+          message: message.toString(),
+          type: 'warning'
+        })
+      } else {
+        message = `Countdown ${countBack._id} modified!`
         await growl({
           title: 'Success',
           message: message.toString(),
           type: 'info'
         })
-      } catch (error) {
-        await growl({
-          title: 'Update Error',
-          message: error.toString(),
-          type: 'error'
-        })
       }
+    } catch (error) {
+      await growl({
+        title: 'Update Error',
+        message: error.toString(),
+        type: 'error'
+      })
     }
   }
 
-  const handleSubmit = (values) => {
-    setPreSaved(values)
-    console.log(values);
+
+  const handleSubmit = async (values) => {
+    await save(values, false)
+  }
+
+  const handleCancel = async () => {
+    setForm(null)
+    await save(protectedData, true)
   }
 
   return (
@@ -87,9 +80,9 @@ export const Design = () => {
               onSubmit={handleSubmit}
               resetOnSubmit={false} />}
 
-            <button className={`btn btn-primary w-100 ${preSaved ? '' : 'disabled'}`}
-              onClick={save}>
-              Save changes
+            <button className={`btn btn-primary w-100`}
+              onClick={handleCancel}>
+              Cancel changes
             </button>
           </div>
           <div className="col-md-8">
@@ -125,9 +118,7 @@ export const Design = () => {
             </div>
             <div className="row">
               <div className="col-12">
-                {preview &&
-                  <Preview route={route} isLandscape={landscape} />
-                }
+                <Preview route={route} isLandscape={landscape} />
               </div>
             </div>
           </div>

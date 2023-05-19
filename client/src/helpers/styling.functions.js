@@ -5,7 +5,7 @@ export const setRootBackground = (background_input, isColor) => {
         let background = `#${background_input})`
         root.style.backgroundColor = background
     } else {
-        let background = `url(.${background_input})`
+        let background = `url(${background_input})`
         root.style.backgroundImage = background
     }
 }

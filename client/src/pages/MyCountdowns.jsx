@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { growl } from '@crystallize/react-growl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencil, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft, faAngleRight, faPencil, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import { ActiveDate, Share } from '../components'
 import { CountdownService } from '../data/services'
@@ -95,7 +95,12 @@ export const MyCountdowns = () => {
                                     <div className="col-md-10 col-9">
                                         <div className="w-auto">
                                             <div className='mb-3'>
-                                                {count.text}
+                                                <span className="me-3">{count.text}</span>
+                                                <span className="small">
+                                                    <NavLink to={`../countdown/${count._id}`} target='_blank' className='text-decoration-none'>
+                                                        Open it <FontAwesomeIcon icon={faAngleRight} title='Open' />
+                                                    </NavLink>
+                                                </span>
                                                 <br />
                                                 <div className="d-flex gap-3">
                                                     {moment.utc(count.date).startOf('day').format("YYYY-MM-DD")}
