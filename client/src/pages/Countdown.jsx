@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { Layout } from './Layout'
 import { Counter } from '../components';
 import { StylingFunctions } from '../helpers';
 
@@ -23,7 +22,6 @@ export const Countdown = () => {
       temp_date.setDate(new Date().getDate() + 1)
     } else {
       temp_date = new Date(params.date)
-      temp_date.setHours(temp_date.getUTCHours())
     }
     setDate(temp_date);
 
