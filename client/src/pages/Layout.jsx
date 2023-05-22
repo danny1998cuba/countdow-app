@@ -33,8 +33,8 @@ export const Layout = ({ title = '', withLogin = true, children }) => {
                         </div>
                     </header>
 
-                    <main className='d-flex flex-column-reverse flex-lg-row justify-content-between align-items-start gap-3'>
-                        <section className={`${withLogin ? 'withLogin' : ''}`}>
+                    <main className=''>
+                        {/* <section className={`${withLogin ? 'withLogin' : ''}`}>
                             {children}
                         </section>
                         {
@@ -42,7 +42,10 @@ export const Layout = ({ title = '', withLogin = true, children }) => {
                             <aside className='d-flex justify-content-center justify-content-lg-end align-items-center align-items-lg-start w-100'>
                                 <Login />
                             </aside>
-                        }
+                        } */}
+                        <section>
+                            {children}
+                        </section>
                     </main>
                 </div>
 
