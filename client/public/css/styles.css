@@ -21,7 +21,6 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-attachment: fixed; */
 }
 
 header {
@@ -50,10 +49,21 @@ main section {
 
 .layout-container {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .nav-link {
     cursor: pointer !important;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+footer * {
+    color: #eee !important;
 }
 
 /* Counter */

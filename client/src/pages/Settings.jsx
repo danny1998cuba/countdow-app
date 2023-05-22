@@ -11,10 +11,6 @@ const settings_options = [
     id: 'profile',
     name: 'Profile'
   },
-  {
-    id: 'other',
-    name: 'Other'
-  }
 ]
 
 export const SettingsTab = ({ id }) => {
