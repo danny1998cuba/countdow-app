@@ -6,7 +6,12 @@
 body {
     min-height: 100vh;
     max-height: 100vh;
-    background: #090c15 !important;
+    background-color: black !important;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/background.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-attachment: fixed, fixed;
+    background-size: cover;
     color: #eee !important;
     min-width: 300px;
 }

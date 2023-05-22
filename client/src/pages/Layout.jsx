@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 export const Layout = ({ title = '', withLogin = true, children }) => {
-    const { logged } = useContext(AuthContext)
+    const { logged, user } = useContext(AuthContext)
 
     return (
         <>
@@ -15,13 +15,15 @@ export const Layout = ({ title = '', withLogin = true, children }) => {
 
                     <div className="dropdown">
                         {
-                            logged && <>
+                            logged &&
+                            <div className='d-flex flex-row align-items-center gap-3'>
+                                <p className='m-0 d-none d-sm-inline-block'>Welcome, {user ? user.username : 'username'}</p>
                                 <button className="btn text-light dropdown-toggle" type="button" id="triggerId"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <FontAwesomeIcon icon={faBars}/>
+                                    <FontAwesomeIcon icon={faBars} />
                                 </button>
                                 <Menu />
-                            </>
+                            </div>
                         }
                     </div>
                 </header>

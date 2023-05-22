@@ -83,7 +83,7 @@ export const MyCountdowns = () => {
                 {counts.length !== 0 && counts.map(count => (
                     <li className='my-4 p-3' key={count._id}>
                         <div className="row">
-                            <div className="col-md-8 ">
+                            <div className="col-md-8 mb-3">
                                 <div className="row">
                                     <div className="col-md-2 col-3" >
                                         <div
@@ -102,7 +102,7 @@ export const MyCountdowns = () => {
                                                     </NavLink>
                                                 </span>
                                                 <br />
-                                                <div className="d-flex gap-3">
+                                                <div className="d-flex gap-3 mt-2">
                                                     {moment.utc(count.date).startOf('day').format("YYYY-MM-DD")}
                                                     <ActiveDate date={count.date} />
                                                 </div>

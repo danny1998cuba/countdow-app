@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Layout } from './Layout'
 import { CountdownService } from '../data/services'
+import { AuthContext } from '../context'
 
 export const Home = () => {
     const [counts, setCounts] = useState([])
     const [error, setError] = useState(null)
+
+    const { logged } = useContext(AuthContext)
 
     const loadCounts = async () => {
         try {
@@ -18,7 +21,7 @@ export const Home = () => {
     }
 
     return (
-        <Layout title='Home'>
+        <Layout title='Home' withLogin={!logged}>
             <p>Home</p>
 
             <button onClick={loadCounts}>Counts</button>
