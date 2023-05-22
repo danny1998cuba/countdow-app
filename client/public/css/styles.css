@@ -81,6 +81,32 @@ footer * {
     line-height: 2.2rem;
 }
 
+.my-card {
+    width: 20rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 1.5rem 2rem;
+}
+
+.my-card .title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.my-card .number {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: cursive;
+}
+
+.my-card .icon {
+    font-size: 2.5rem;
+    color: var(--icon-color);
+    animation: pumping infinite 4s;
+}
+
 /* Counter */
 .counter-wrapper {
     width: 100%;

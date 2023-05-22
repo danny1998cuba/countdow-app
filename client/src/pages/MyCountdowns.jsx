@@ -72,7 +72,7 @@ export const MyCountdowns = () => {
     }, [])
 
     return (
-        <Layout title='My Countdowns' withLogin={false}>
+        <Layout title='My Countdowns'>
             <div className="d-flex w-100 justify-content-end">
                 <button className="btn btn-sm btn-primary my-3 me-3" onClick={newCountdown}>New Countdown</button>
             </div>

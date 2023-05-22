@@ -71,3 +71,12 @@ export const profile = async () => {
         throw error.response.data
     }
 }
+
+export const countUsers = async () => {
+    try {
+        let res = await axios.get(`${API_USERS}/count`)
+        return res.data
+    } catch (error) {
+        throw error.response.data
+    }
+}

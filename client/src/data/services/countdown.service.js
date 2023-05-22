@@ -34,7 +34,6 @@ export const delete_ = async (id) => {
 
 export const getOne = async (id) => {
     try {
-        // let headers = generateHeader()
         let res = await axios.get(`${API_COUNTDOWN}/${id}`)
         return res.data
     } catch (error) {
@@ -46,6 +45,15 @@ export const getAll = async () => {
     try {
         let headers = generateHeader()
         let res = await axios.get(API_COUNTDOWN, { headers })
+        return res.data
+    } catch (error) {
+        throw error.response.data
+    }
+}
+
+export const count = async () => {
+    try {
+        let res = await axios.get(`${API_COUNTDOWN}/count`)
         return res.data
     } catch (error) {
         throw error.response.data

@@ -112,3 +112,14 @@ exports.changePassword = async (req, res) => {
         res.status(500).send('Hubo un error')
     }
 }
+
+exports.countUsers = async (req, res) => {
+    try {
+        let count = await User.count()
+        res.json(count)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error')
+    }
+}

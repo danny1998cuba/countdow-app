@@ -90,3 +90,14 @@ exports.eliminarCountdown = async (req, res) => {
         res.status(500).send('Hubo un error')
     }
 }
+
+exports.countCountdowns = async (req, res) => {
+    try {
+        let count = await Countdown.count()
+        res.json(count)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error')
+    }
+}

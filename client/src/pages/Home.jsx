@@ -1,12 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Layout } from './Layout'
 import { AuthContext } from '../context'
 import { Login } from '../components'
 import { useNavigate } from 'react-router-dom'
+import { AuthService, CountdownService } from '../data/services'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export const Home = () => {
     const { logged } = useContext(AuthContext)
     const navigate = useNavigate()
+
+    const [users, setUsers] = useState(0)
+    const [count, setCount] = useState(0)
 
     const handleDirection = () => {
         if (logged) {
@@ -18,6 +24,18 @@ export const Home = () => {
             })
         }
     }
+
+    useEffect(() => {
+        const asyn = async () => {
+            let usersCount = await AuthService.countUsers()
+            let countsCount = await CountdownService.count()
+            setUsers(usersCount)
+            setCount(countsCount)
+        }
+
+        asyn()
+    }, [])
+
 
     return (
         <Layout title='' withLogin={!logged}>
@@ -62,6 +80,42 @@ export const Home = () => {
                     <button className="btn btn-primary" onClick={handleDirection}>
                         {logged ? 'My countdowns' : 'Sign in'}
                     </button>
+                </div>
+            </section>
+
+            <section className="d-flex flex-column justify-content-center align-items-center my-5 pb-4">
+                <p className="display-5 text-center">A growing app</p>
+                <div className="row w-100 mt-4 mb-5">
+                    <div className="col-lg-8 offset-lg-2 col-10 offset-1">
+                        <div className="d-flex flex-row justify-content-center align-items-center gap-5 flex-wrap">
+                            <div className="my-card">
+                                <div className="title">
+                                    Users registered
+                                </div>
+                                <div className="row">
+                                    <div className="col-8"><p className="number">{users}</p></div>
+                                    <div className="col-4">
+                                        <div className="icon" style={{ '--icon-color': '#575cef' }}>
+                                            <FontAwesomeIcon icon={faUser} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="my-card">
+                                <div className="title">
+                                    Total of countdowns
+                                </div>
+                                <div className="row">
+                                    <div className="col-8"><p className="number">{count}</p></div>
+                                    <div className="col-4">
+                                    <div className="icon" style={{ '--icon-color': '#e04b2d' }}>
+                                            <FontAwesomeIcon icon={faClock} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

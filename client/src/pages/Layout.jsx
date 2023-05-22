@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { Footer, Login, Menu } from '../components'
+import { Footer, Menu } from '../components'
 import { AuthContext } from '../context'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
 
-export const Layout = ({ title = '', withLogin = true, children }) => {
+export const Layout = ({ title = '', withFooter = true, children }) => {
     const { logged, user } = useContext(AuthContext)
 
     return (
@@ -34,22 +34,13 @@ export const Layout = ({ title = '', withLogin = true, children }) => {
                     </header>
 
                     <main className=''>
-                        {/* <section className={`${withLogin ? 'withLogin' : ''}`}>
-                            {children}
-                        </section>
-                        {
-                            withLogin &&
-                            <aside className='d-flex justify-content-center justify-content-lg-end align-items-center align-items-lg-start w-100'>
-                                <Login />
-                            </aside>
-                        } */}
                         <section>
                             {children}
                         </section>
                     </main>
                 </div>
 
-                <Footer />
+                {withFooter && <Footer />}
             </div>
         </>
     )

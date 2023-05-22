@@ -53,7 +53,7 @@ export const Settings = () => {
   const [active, setActive] = useState('profile')
 
   return (
-    <Layout title='Settings' withLogin={false}>
+    <Layout title='Settings'>
       <div className="row w-100 mt-4">
         <div className="col-12">
           <ul className="nav nav-tabs" id="navId" role="tablist">

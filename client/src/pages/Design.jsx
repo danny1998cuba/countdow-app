@@ -71,7 +71,7 @@ export const Design = ({ protectedData }) => {
   }
 
   return (
-    <Layout title='Design' withLogin={false}>
+    <Layout title='Design' withFooter={false}>
       <>
         <div className="row mt-4">
           <div className="col-md-4 mb-4">
