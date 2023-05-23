@@ -1,6 +1,6 @@
 {
   "name": "time_to_api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Little database server for \"d98c_sw Time to\" App",
   "main": "index.js",
   "repository": "https://github.com/danny1998cuba/countdow-app.git",
