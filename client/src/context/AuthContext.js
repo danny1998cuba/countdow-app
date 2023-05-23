@@ -20,11 +20,13 @@ const AuthProvider = ({ children }) => {
                 token = await AuthService.signup(values)
             }
 
-            StorageService.setItemSession(TOKEN_HEADER, token)
-            let user = await AuthService.profile()
-            StorageService.setItemSession(USER_KEY, user)
-            setUser(user)
-            setLogged(true)
+            if (token) {
+                StorageService.setItemSession(TOKEN_HEADER, token)
+                let user = await AuthService.profile()
+                StorageService.setItemSession(USER_KEY, user)
+                setUser(user)
+                setLogged(true)
+            }
         } catch (error) {
             await growl({
                 title: 'Authentication Error',

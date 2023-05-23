@@ -30,7 +30,7 @@ Modal.setAppElement('#root')
 
 export const Share = ({ id, modalIsOpen, setIsOpen }) => {
 
-    const route = `https://time-to.vercel.app/#/countdown/${id}`
+    const route = `${window.location.origin}/countdown/${id}`
     const share_sources = [
         {
             id: 'copy',
@@ -112,7 +112,7 @@ export const Share = ({ id, modalIsOpen, setIsOpen }) => {
                 <h5 className='text-center'>Share your countdown</h5>
 
                 <p className="link p-2">
-                    <Link to={`../countdown/${id}`}>{route}</Link>
+                    <Link to={`../countdown/${id}`} target='_blank' onClick={() => setIsOpen(false)}>{route}</Link>
                 </p>
 
                 <div className="d-flex flex-wrap justify-content-center align-items-center w-100 gap-3">

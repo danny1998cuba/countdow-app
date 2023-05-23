@@ -1,0 +1,257 @@
+/* Layout */
+* {
+    transition: all 0.2s;
+}
+
+body {
+    min-height: 100vh;
+    max-height: 100vh;
+    background-color: black !important;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/background.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-attachment: fixed, fixed;
+    background-size: cover;
+    color: #eee !important;
+    min-width: 300px;
+}
+
+#root {
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+header .dropdown-toggle::after {
+    display: none !important;
+}
+
+.home-login-right {
+    flex: 1;
+}
+
+.watch-img {
+    margin: 3rem;
+    width: 75%;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+}
+
+.watch-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.home-login-left {
+    flex: 2;
+    width: 100%;
+}
+
+.layout-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-link {
+    cursor: pointer !important;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+footer * {
+    color: #eee !important;
+}
+
+/* Home */
+.description {
+    font-size: 1.1rem;
+    line-height: 2.2rem;
+}
+
+.my-card {
+    width: 20rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 1.5rem 2rem;
+}
+
+.my-card .title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.my-card .number {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: cursive;
+}
+
+.my-card .icon {
+    font-size: 2.5rem;
+    color: var(--icon-color);
+    animation: pumping infinite 4s;
+}
+
+/* Counter */
+.counter-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter-box {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.counter-box .title {
+    font-family: cursive;
+    font-weight: 200;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+    text-align: center;
+
+    width: 90%;
+    margin: 0 auto 2rem auto;
+    padding: .75rem 2rem;
+
+    border: 3px groove rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 3px 3px 10px rgba(255, 255, 255, .3),
+        10px 10px 10px rgba(0, 0, 0, 0.7);
+}
+
+.counter-flex-responsive {
+    width: 100%;
+}
+
+.counter .box {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 25px;
+    box-shadow: inset 3px 3px 10px rgba(255, 255, 255, .3),
+        5px 5px 10px rgba(0, 0, 0, 0.6);
+    padding: 1.5rem 0;
+}
+
+
+/* Login */
+.login {
+    margin-top: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 1rem 1.5rem;
+}
+
+.login .options .item,
+.login .forgot-pass,
+.orientation .icon {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.login .options .item.selected,
+.orientation .icon.active {
+    opacity: 1;
+}
+
+.login .options .item:hover,
+.login .forgot-pass:hover,
+.orientation .icon:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+/* Forms */
+form .error {
+    font-size: small;
+    color: #ee624d;
+}
+
+/* Share */
+.share .link {
+    word-wrap: break-word;
+}
+
+.btn-whatsapp {
+    background-color: #28d146 !important;
+}
+
+.btn-copy {
+    background-color: #555 !important;
+}
+
+.btn-instagram {
+    background: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7) !important;
+}
+
+.btn-telegram {
+    background-color: #0088cc !important;
+}
+
+.btn-facebook {
+    background-color: #3b5998 !important;
+}
+
+.btn-tweeter {
+    background-color: #00acee !important;
+}
+
+.btn-other {
+    background-color: #ff2100 !important;
+}
+
+/* Avatar */
+.avatar {
+    border-radius: 50px;
+    width: 3rem;
+    height: 3rem;
+    background: var(--bg);
+    font-weight: 500;
+    font-size: 1.5rem;
+    font-family: cursive;
+}
+
+@keyframes pumping {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (min-width: 991px) {
+    .counter-box .title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 678px) and (max-width: 991px) {
+    .counter-box .title {
+        font-size: 1.3rem;
+    }
+}

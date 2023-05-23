@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { growl } from '@crystallize/react-growl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft, faAngleRight, faPencil, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faAngleRight, faPencil, faShareNodes, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import { ActiveDate, Share } from '../components'
 import { CountdownService } from '../data/services'
 import { Layout } from './Layout'
 import moment from 'moment'
 import { PASTEL_COLOURS } from '../data/constants/colors'
-import _ from 'lodash'
 
 export const MyCountdowns = () => {
     const navigate = useNavigate()

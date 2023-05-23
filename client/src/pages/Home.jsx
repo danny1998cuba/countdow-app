@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { AuthService, CountdownService } from '../data/services'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUser } from '@fortawesome/free-solid-svg-icons'
+import { isNaN, isNumber } from 'lodash'
 
 export const Home = () => {
     const { logged } = useContext(AuthContext)
@@ -27,10 +28,14 @@ export const Home = () => {
 
     useEffect(() => {
         const asyn = async () => {
-            let usersCount = await AuthService.countUsers()
-            let countsCount = await CountdownService.count()
-            setUsers(usersCount)
-            setCount(countsCount)
+            try {
+                let usersCount = await AuthService.countUsers()
+                let countsCount = await CountdownService.count()
+                if (isNumber(usersCount)) setUsers(usersCount)
+                if (isNumber(countsCount)) setCount(countsCount)
+            } catch {
+                console.log('Couldn\'t connect');
+            }
         }
 
         asyn()
@@ -108,7 +113,7 @@ export const Home = () => {
                                 <div className="row">
                                     <div className="col-8"><p className="number">{count}</p></div>
                                     <div className="col-4">
-                                    <div className="icon" style={{ '--icon-color': '#e04b2d' }}>
+                                        <div className="icon" style={{ '--icon-color': '#e04b2d' }}>
                                             <FontAwesomeIcon icon={faClock} />
                                         </div>
                                     </div>

@@ -129,7 +129,7 @@ footer * {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
     text-align: center;
 
-    width: 80%;
+    width: 90%;
     margin: 0 auto 2rem auto;
     padding: .75rem 2rem;
 
@@ -245,31 +245,13 @@ form .error {
 }
 
 @media (min-width: 991px) {
-    .counter-flex-responsive {
-        width: 50%;
-    }
-
-    .counter-box .title {
-        font-size: 2rem;
-    }
-}
-
-@media (min-width: 786px) {
-    .counter-flex-responsive {
-        width: 60%;
-    }
-
-    .counter-box .title {
-        font-size: 1.75rem;
-    }
-}
-
-@media (min-width: 576px) {
-    .counter-flex-responsive {
-        width: 75%;
-    }
-
     .counter-box .title {
         font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 678px) and (max-width: 991px) {
+    .counter-box .title {
+        font-size: 1.3rem;
     }
 }

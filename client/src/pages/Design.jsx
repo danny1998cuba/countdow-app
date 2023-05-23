@@ -18,7 +18,7 @@ export const Design = ({ protectedData }) => {
   const [countdown, setCountdown] = useState(assign({}, protectedData))
 
   const [landscape, setLandscape] = useState(true)
-  const [route, setRoute] = useState(`/#/countdown/${protectedData._id}`)
+  const [route, setRoute] = useState(`/countdown/${protectedData._id}`)
 
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const Design = ({ protectedData }) => {
       setRoute('')
       let countBack = await CountdownService.update(countdown._id, object)
       setCountdown(countBack)
-      setRoute(`/#/countdown/${countdown._id}`)
+      setRoute(`/countdown/${countdown._id}`)
 
       let message
 

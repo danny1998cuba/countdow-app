@@ -1,5 +1,5 @@
 // Base
-export const API_ROOT = 'http://localhost:5000/api'
+export const API_ROOT = process.env.REACT_APP_API_BASE
 
 // Endpoints
 export const API_USERS = API_ROOT + '/user'

@@ -24,10 +24,14 @@ export const CountdownId = () => {
 
 
   return (
-    <div className="counter-wrapper">
-      <div className="counter-box">
-        <p className='title'>{count.text}</p>
-        <Counter date={count.date} />
+    <div className="row w-100">
+      <div className="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div className="counter-wrapper">
+          <div className="counter-box">
+            <p className='title'>{count.text}</p>
+            <Counter date={count.date} />
+          </div>
+        </div>
       </div>
     </div>
   )

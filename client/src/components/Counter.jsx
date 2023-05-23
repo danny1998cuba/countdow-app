@@ -52,7 +52,7 @@ export const Counter = ({ date }) => {
                 {
                     !today && !before &&
                     <div className="text-center w-100 d-flex justify-content-center">
-                        <div className="counter-flex-responsive d-flex gap-4 flex-column">
+                        <div className="d-flex gap-4 flex-column w-100">
                             <div className="w-100 box">
                                 <p className="display-4">
                                     {days}

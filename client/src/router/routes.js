@@ -1,12 +1,12 @@
 import {
-    createHashRouter, createRoutesFromElements,
-    Route, Navigate
+    createRoutesFromElements,
+    Route, Navigate, createBrowserRouter
 } from 'react-router-dom'
 import { Countdown, CountdownId, Design, Home, MyCountdowns, Settings } from '../pages'
 import { ProtectedRoute } from './ProtectedRoute'
 import { CountdownService } from '../data/services';
 
-export const router = createHashRouter(
+export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route key='home' path='' element={<Home />} />
