@@ -14,7 +14,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.4.0",
     "clipboardy": "^3.0.0",
-    "d98c_dynamic-forms": "^1.0.0",
+    "d98c_dynamic-forms": "^1.0.1",
     "framer-motion": "^10.12.10",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
